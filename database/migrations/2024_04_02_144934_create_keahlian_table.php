@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('perguruantinggi', function (Blueprint $table) {
-            $table->bigIncrements('id_pt');
-            $table->string('perguruan_tinggi');
-            $table->timestamps();
+        Schema::create('keahlian', function (Blueprint $table) {
+            $table->id();
+            $table->string('keahlian');
+            $table->foreignId('id_profil');
+            $table->foreign('id_profil')->references('id_profil')->on('profil')->onDelete('cascade');
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('perguruantinggi');
+        Schema::dropIfExists('keahlian');
     }
 };

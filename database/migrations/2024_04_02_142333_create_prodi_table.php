@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jurusan', function (Blueprint $table) {
-            $table->bigIncrements('id_jurusan');
-            $table->foreignId('id_pt');
-            $table->foreign('id_pt')->references('id_pt')->on('perguruantinggi')->onDelete('cascade');
-            $table->string('nama_jurusan');
+        Schema::create('prodi', function (Blueprint $table) {
+            $table->bigIncrements('id_prodi');
+        
+            $table->foreignId('id_jurusan');
+            $table->foreign('id_jurusan')->references('id_jurusan')->on('jurusan')->onDelete('cascade');
+            $table->string('nama_prodi');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jurusan');
+        Schema::dropIfExists('prodi');
     }
 };

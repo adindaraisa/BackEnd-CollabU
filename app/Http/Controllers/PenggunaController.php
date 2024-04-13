@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profil;
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -15,26 +16,26 @@ class PenggunaController extends Controller
     {
         // Validasi input
         $request->validate([
-            'email' => 'required|unique:users',
+            'email' => 'required|unique:pengguna',
             'password' => 'required',
-            'nama' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'tahun_masuk' =>'required',
-            'id_perguruan_tinggi' =>'required',
-            'id_jurusan' =>'required',
+            'nama_lengkap' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'id_pt' =>'required',
         ], [
             'email.unique' => 'email sudah digunakan.',
-            'nama.regex' => 'Nama hanya boleh diisi dengan huruf.',
+            'nama_lengkap.regex' => 'Nama hanya boleh diisi dengan huruf.',
         ]);
 
-        // Buat koordinator baru
-        Pengguna::create([
+        $pengguna = Pengguna::create([
             'email' => $request->email,
             'password' => Crypt::encryptString($request->password),
-            'nama' => $request->nama,   
-            'tahun_masuk' => $request->tahun_masuk,
-            'id_perguruan_tinggi' => $request->id_perguruan_tinggi,
-            'id_jurusan' => $request->id_jurusan,
+            'nama_lengkap' => $request->nama_lengkap,   
+            'id_pt' => $request->id_pt,
         ]);
+
+        Profil::create([
+            'id_pengguna' => $pengguna->id_pengguna,
+        ]);
+
 
         return response()->json(['message' => 'Akun berhasil dibuat']);
     }
@@ -42,9 +43,56 @@ class PenggunaController extends Controller
     public function readPengguna()
     {
 
-        $datas = Pengguna::with(['Jurusan', 'PerguruanTinggi'])->get();
+        $datas = Pengguna::with('PerguruanTinggi')->get();
     
         return response()->json($datas, 200);
+    }
+
+    public function deletePengguna($id)
+    {
+        $pengguna = Pengguna::find($id);
+
+        if (!$pengguna) {
+            return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
+        }
+
+        $pengguna->delete();
+
+        return response()->json(['message' => 'Pengguna berhasil dihapus']);
+    }
+
+    public function lengkapiDataPengguna(Request $request, $id)
+    {
+        $pengguna = Pengguna::find($id);
+
+        if (!$pengguna) {
+            return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
+        } 
+
+        $request->validate([
+            'email' => 'required',
+            'nama_lengkap' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'nama_panggilan' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'tanggal_lahir'=> 'required',
+            'jenis_kelamin'=> 'required',
+            'no_telp' => 'required|regex:/^\d+$/',
+        ], [
+            'nama_lengkap.regex' => 'Nama hanya boleh diisi dengan huruf.',
+            'nama_panggilan.regex' => 'Nama hanya boleh diisi dengan huruf.',
+            'no_telp.regex' => 'No telepon hanya boleh diisi dengan angka.', 
+        ]);
+
+
+        $pengguna->update([
+            'email' => $request->email,
+            'nama_lengkap' => $request->nama_lengkap,
+            'nama_panggilan' => $request->nama_panggilan,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'no_telp' => $request->no_telp, // Tambahkan nomor telepon
+        ]);
+
+        return response()->json(['message' => 'Pengguna berhasil diperbaharui']);
     }
 
     public function index()

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
@@ -14,22 +15,26 @@ class PenggunaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
+        DB::table('pengguna')->insert([
             [
                 'email' => 'adinda123@gmail.com',
                 'password' => Crypt::encryptString('adinda'),
-                'nama' => 'Adinda',
-                'tahun_masuk' => '2022',
-                'id_jurusan' => 1,
-                'id_perguruan_tinggi' => 1,
+                'nama_lengkap' => 'Adinda Raisa Az-zahra',
+                'nama_panggilan' => 'Adinda',
+                'tanggal_lahir' => Carbon::createFromDate(2004, 5, 11),
+                'jenis_kelamin' => 'Wanita',
+                'no_telp' => '08990918911',
+                'id_pt' => 1,
             ],
             [
-                'email' => 'agung123@gmail.com',
-                'password' => Crypt::encryptString('agung'),
-                'nama' => 'Agung',
-                'tahun_masuk' => '2022',
-                'id_jurusan' => 2,
-                'id_perguruan_tinggi' => 1,
+                'email' => 'jeonghan@gmail.com',
+                'password' => Crypt::encryptString('jeonghan'),
+                'nama_lengkap' => 'Yoon Jeonghan',
+                'nama_panggilan' => 'Jeonghan',
+                'tanggal_lahir' => Carbon::createFromDate(1995, 10, 4),
+                'jenis_kelamin' => 'Pria',
+                'no_telp' => '085563326633',
+                'id_pt' => 1,
             ],
         ]);
     }

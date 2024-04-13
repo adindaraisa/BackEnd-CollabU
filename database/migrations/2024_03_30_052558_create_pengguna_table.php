@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('pengguna', function (Blueprint $table) {
             $table->bigIncrements('id_pengguna');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('nama', 50);
-            $table->string('tahun_masuk', 4);
-            $table->foreignId('id_perguruan_tinggi')->nullable();
-            $table->foreign('id_perguruan_tinggi')->references('id_perguruan_tinggi')->on('perguruantinggi')->onDelete('set null');
-            $table->foreignId('id_jurusan')->nullable();
-            $table->foreign('id_jurusan')->references('id_jurusan')->on('jurusan')->onDelete('set null');
+            $table->string('nama_lengkap', 50);
+            $table->string('nama_panggilan')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->enum('jenis_kelamin', ['Pria', 'Wanita'])->nullable();
+            $table->string('no_telp', 15)->nullable();
+            $table->foreignId('id_pt')->nullable();
+            $table->foreign('id_pt')->references('id_pt')->on('perguruantinggi')->onDelete('set null');
             $table->timestamps();
         });
     }

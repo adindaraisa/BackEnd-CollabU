@@ -17,7 +17,7 @@ class Jurusan extends Model
         'nama_jurusan', 
     ];
 
-    public function Pengguna(): HasOne
+    public function pengguna(): HasOne
     {
         return $this->hasOne(Pengguna::class, 'id_jurusan', 'id_jurusan');
     }

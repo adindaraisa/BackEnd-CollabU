@@ -11,14 +11,16 @@ class PerguruanTinggi extends Model
 {
     use HasFactory, HasApiTokens;
     protected $table = 'perguruantinggi';
-    protected $primaryKey = 'id_perguruan_tinggi';
+    protected $primaryKey = 'id_pt';
     protected $fillable = [
         'perguruan_tinggi', 
     ];
 
-    public function Pengguna(): HasOne
+    public function pengguna(): HasOne
     {
-        return $this->hasOne(Pengguna::class, 'id_perguruan_tinggi', 'id_perguruan_tinggi');
+        return $this->hasOne(Pengguna::class, 'id_pt', 'id_pt');
     }
+
+    
 }
 

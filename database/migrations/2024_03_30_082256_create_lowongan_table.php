@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('lowongan', function (Blueprint $table) {
             $table->bigIncrements('id_lowongan');
             $table->text('deskripsi');
-            $table->string('peran');
+            $table->string('posisi');
             $table->string('kompetisi');
             $table->text('deskripsi_kerja');
-            $table->foreign('id_pembuat')->references('id_pengguna')->on('users')->onDelete('set null');
+            $table->foreign('id_pembuat')->references('id_pengguna')->on('pengguna')->onDelete('set null');
             $table->foreignId('id_pembuat')->nullable();
             $table->date('tanggal_posting')->default(now());
         });

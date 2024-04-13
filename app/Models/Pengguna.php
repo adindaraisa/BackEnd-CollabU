@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -11,24 +12,27 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Pengguna extends Model
 {
     use HasFactory, HasApiTokens;
-    protected $table = 'users';
+    protected $table = 'pengguna';
     protected $primaryKey = 'id_pengguna';
     protected $fillable = [
         'email', 
         'password', 
-        'nama',
-        'tahun_masuk',
-        'id_jurusan',
-        'id_perguruan_tinggi'
+        'nama_lengkap',
+        'nama_panggilan',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'no_telp',
+        'id_pt'
     ];
 
-    public function Jurusan(): BelongsTo
+
+    public function perguruantinggi(): BelongsTo
     {
-        return $this->belongsTo(Jurusan::class, 'id_jurusan','id_jurusan');
+        return $this->belongsTo(PerguruanTinggi::class, 'id_pt','id_pt');
     }
 
-    public function PerguruanTinggi(): BelongsTo
+    public function profil(): HasOne
     {
-        return $this->belongsTo(PerguruanTinggi::class, 'id_perguruan_tinggi','id_perguruan_tinggi');
+        return $this->hasOne(Profil::class, 'id_pengguna', 'id_pengguna');
     }
 }

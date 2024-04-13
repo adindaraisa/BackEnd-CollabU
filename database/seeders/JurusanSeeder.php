@@ -15,12 +15,15 @@ class JurusanSeeder extends Seeder
     {
         DB::table('jurusan')->insert([
             [
+                'id_pt' => '1',
                 'nama_jurusan' => 'Teknik Komputer dan Informatika',
             ],
             [
+                'id_pt' => '1',
                 'nama_jurusan' => 'Teknik Mesin',
             ],
             [
+                'id_pt' => '1',
                 'nama_jurusan' => 'Administrasi Niaga',
             ],
         ]);
