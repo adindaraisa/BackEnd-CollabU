@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Prestasi extends Model
+class LowonganAngkatan extends Model
 {
     use HasFactory, HasApiTokens;
-    protected $table = 'prestasi';
+    protected $table = 'lowongan_angkatan';
+    public $timestamps = false;
     protected $fillable = [
-        'id_profil', 
-        'nama_penghargaan',
-        'kategori',
-        'tahun' 
+        'id_lowongan', 
+        'angkatan'
     ];
 
-    public function profil(): BelongsTo
+
+    public function lowongan(): BelongsTo
     {
-        return $this->belongsTo(Profil::class, 'id_profil','id_profil');
+        return $this->belongsTo(Lowongan::class, 'id_lowongan','id_lowongan');
     }
 }

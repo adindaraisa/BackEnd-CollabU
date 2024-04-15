@@ -19,6 +19,10 @@ class ProdiSeeder extends Seeder
                 'nama_prodi' => 'D3 Teknik Informatika',
             ],
             [
+                'id_jurusan' => '1',
+                'nama_prodi' => 'D4 Teknik Informatika',
+            ],
+            [
                 'id_pt' => '2',
                 'nama_jurusan' => 'D3 Teknik Mesin',
             ],

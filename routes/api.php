@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KeahlianController;
+use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\PendidikanController;
 use App\Http\Controllers\PengalamanController;
 use Illuminate\Http\Request;
@@ -24,3 +25,6 @@ Route::post('/profil/prestasi/{id}', [PrestasiController::class, 'createPrestasi
 Route::post('/profil/pengalaman/{id}', [PengalamanController::class, 'createPengalaman']);
 
 Route::post('/profil/keahlian/{id}', [KeahlianController::class, 'createKeahlian']);
+
+Route::get('/daftar-lowongan', [LowonganController::class, 'daftarLowongan']);
+Route::post('/lowongan/{id}', [LowonganController::class, 'createLowongan']);

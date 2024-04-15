@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('posisi');
             $table->string('kompetisi');
             $table->text('deskripsi_kerja');
-            $table->foreign('id_pembuat')->references('id_pengguna')->on('pengguna')->onDelete('set null');
-            $table->foreignId('id_pembuat')->nullable();
-            $table->date('tanggal_posting')->default(now());
+            $table->foreign('id_pengguna')->references('id_pengguna')->on('pengguna')->onDelete('set null');
+            $table->foreignId('id_pengguna')->nullable();
+            $table->date('tgl_posting')->default(now());
+            $table->date('tgl_edit')->nullable();
         });
     }
 

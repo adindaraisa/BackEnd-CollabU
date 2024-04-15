@@ -3,37 +3,64 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lowongan;
+use App\Models\LowonganAngkatan;
+use App\Models\Pengguna;
 use Illuminate\Http\Request;
+use App\Models\LowonganJurusan;
+use App\Models\LowonganProdi;
 use Illuminate\Support\Facades\Crypt;
 
 class LowonganController extends Controller
 {
-    public function buatLowongan(Request $request)
+    public function daftarLowongan()
     {
+
+        $datas = Lowongan::with('prodi', 'angkatan')->get();
+    
+        return response()->json($datas, 200);
+    }
+
+    public function createLowongan(Request $request, $id)
+    {
+        $pengguna = Pengguna::find($id);
+
+        if (!$pengguna) {
+            return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
+        } 
         // Validasi input
         $request->validate([
-            'email' => 'required|unique:users',
-            'password' => 'required',
-            'nama' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'tahun_masuk' =>'required',
-            'id_perguruan_tinggi' =>'required',
-            'id_jurusan' =>'required',
-        ], [
-            'email.unique' => 'email sudah digunakan.',
-            'nama.regex' => 'Nama hanya boleh diisi dengan huruf.',
+            'deskripsi' => 'required',
+            'posisi' => 'required',
+            'kompetisi' => 'required',
+            'deskripsi_kerja' =>'required',
+            'prodi.*' => 'required',
+            'angkatan.*' => 'required',
         ]);
 
-        // Buat koordinator baru
-        Lowongan::create([
-            'email' => $request->email,
-            'password' => Crypt::encryptString($request->password),
-            'nama' => $request->nama,   
-            'tahun_masuk' => $request->tahun_masuk,
-            'id_perguruan_tinggi' => $request->id_perguruan_tinggi,
-            'id_jurusan' => $request->id_jurusan,
+        // Buat lowongan baru
+        $lowongan = Lowongan::create([
+            'deskripsi' => $request->deskripsi,
+            'posisi' => $request->posisi,   
+            'kompetisi' => $request->kompetisi,
+            'deskripsi_kerja' => $request->deskripsi_kerja,
+            'id_pengguna' => $pengguna->id_pengguna,
         ]);
 
-        return response()->json(['message' => 'Akun berhasil dibuat']);
+        foreach ($request->prodi as $key => $prodi) {
+            LowonganProdi::create([
+                'id_lowongan' => $lowongan->id_lowongan,
+                'id_prodi' => $prodi,   
+            ]);
+        }
+
+        foreach ($request->angkatan as $key => $angkatan) {
+            LowonganAngkatan::create([
+                'id_lowongan' => $lowongan->id_lowongan,
+                'angkatan' => $angkatan,   
+            ]);
+        }
+
+        return response()->json(['message' => 'Lowongan berhasil dibuat']);
     }
 
     

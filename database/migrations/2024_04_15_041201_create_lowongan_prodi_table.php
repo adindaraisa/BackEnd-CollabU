@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lowongan_angkatan', function (Blueprint $table) {
+        Schema::create('lowongan_prodi', function (Blueprint $table) {
             $table->id();
             $table->foreign('id_lowongan')->references('id_lowongan')->on('lowongan')->onDelete('cascade');
             $table->foreignId('id_lowongan')->nullable();
-            $table->string('angkatan');
+            $table->foreign('id_prodi')->references('id_prodi')->on('prodi')->onDelete('set null');
+            $table->foreignId('id_prodi')->nullable();
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lowongan_angkatan');
+        Schema::dropIfExists('lowongan_prodi');
     }
 };
