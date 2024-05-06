@@ -20,6 +20,14 @@ class LowonganController extends Controller
         return response()->json($datas, 200);
     }
 
+    public function getLowongan($id){
+        $lowongan = Lowongan::with('prodi', 'angkatan')->find($id);
+        if (!$lowongan) {
+            return response()->json(['error' => 'Profile not found'], 404);
+        }
+        return response()->json($lowongan, 200);
+    }
+
     public function createLowongan(Request $request, $id)
     {
         $pengguna = Pengguna::find($id);
