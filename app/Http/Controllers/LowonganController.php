@@ -28,6 +28,13 @@ class LowonganController extends Controller
         return response()->json($lowongan, 200);
     }
 
+    public function getLowonganByPt($pt){
+        $lowongan = Lowongan::select('*')->join('pengguna', 'lowongan.id_pengguna', '=', 'pengguna.id_pengguna')->where('pengguna.id_pt', $pt)
+        ->get();
+
+        return response()->json($lowongan, 200);
+    }
+
     public function createLowongan(Request $request, $id)
     {
         $pengguna = Pengguna::find($id);

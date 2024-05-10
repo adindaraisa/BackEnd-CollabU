@@ -23,4 +23,14 @@ class Pendidikan extends Model
     {
         return $this->belongsTo(Profil::class, 'id_profil','id_profil');
     }
+
+    public function jurusan(): BelongsTo
+    {
+        return $this->belongsTo(Jurusan::class, 'id_jurusan','id_jurusan');
+    }
+
+    public function prodi(): BelongsTo
+    {
+        return $this->belongsTo(Prodi::class, 'id_prodi','id_prodi');
+    }
 }

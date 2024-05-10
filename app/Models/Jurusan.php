@@ -28,4 +28,9 @@ class Jurusan extends Model
     {
         return $this->hasMany(Prodi::class, 'id_jurusan', 'id_jurusan');
     }
+
+    public function pendidikan(): HasMany
+    {
+        return $this->hasMany(Prodi::class, 'id_jurusan', 'id_jurusan');
+    }
 }

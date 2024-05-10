@@ -27,4 +27,9 @@ class Prodi extends Model
     {
         return $this->hasMany(lowonganprodi::class, 'id_prodi', 'id_prodi');
     }
+
+    public function pendidikan(): BelongsTo
+    {
+        return $this->belongsTo(Pendidikan::class, 'id_prodi', 'id_prodi');
+    }
 }

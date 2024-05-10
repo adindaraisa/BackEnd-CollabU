@@ -33,4 +33,12 @@ class PendidikanController extends Controller
         return response()->json(['message' => 'Pendidikan berhasil dibuat']);
     }
 
+    public function getPendidikan($id_profil){
+        $profil = Pendidikan::with(['jurusan', 'prodi'])->find($id_profil);
+        if (!$profil) {
+            return response()->json(['error' => 'Profile not found'], 404);
+        }
+        return response()->json($profil, 200);
+    }
+
 }

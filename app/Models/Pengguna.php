@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Pengguna extends Model
 {
@@ -34,5 +34,10 @@ class Pengguna extends Model
     public function profil(): HasOne
     {
         return $this->hasOne(Profil::class, 'id_pengguna', 'id_pengguna');
+    }
+
+    public function lowongan(): HasMany
+    {
+        return $this->hasMany(Lowongan::class, 'id_pengguna', 'id_pengguna');
     }
 }
