@@ -15,7 +15,7 @@ class LowonganController extends Controller
     public function daftarLowongan()
     {
 
-        $datas = Lowongan::with('prodi', 'angkatan')->get();
+        $datas = Lowongan::with('prodi', 'angkatan')->orderBy('tgl_posting', 'desc')->get();
     
         return response()->json($datas, 200);
     }
