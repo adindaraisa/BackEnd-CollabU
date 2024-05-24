@@ -16,11 +16,11 @@ class ProfilSeeder extends Seeder
         DB::table('profil')->insert([
             [
                 'id_pengguna' => '1',
-                'tentang_saya' =>'Sangat Fenomenal Sekali',
+                'tentang_saya' => 'Sangat Fenomenal Sekali',
             ],
             [
                 'id_pengguna' => '2',
-                'tentang_saya' =>'Sangat Fenomenal Sekali',
+                'tentang_saya' => 'Sangat Fenomenal Sekali',
             ],
         ]);
     }

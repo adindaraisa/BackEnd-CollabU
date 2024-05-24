@@ -36,6 +36,36 @@ class PenggunaSeeder extends Seeder
                 'no_telp' => '085563326633',
                 'id_pt' => 1,
             ],
+            [
+                'email' => 'reni.jkt@gmail.com',
+                'password' => Crypt::encryptString('reni'),
+                'nama_lengkap' => 'Reni Oktavia',
+                'nama_panggilan' => 'Reni',
+                'tanggal_lahir' => Carbon::createFromDate(1998, 3, 14),
+                'jenis_kelamin' => 'Wanita',
+                'no_telp' => '081223344556',
+                'id_pt' => 2,
+            ],
+            [
+                'email' => 'agus_budi@gmail.com',
+                'password' => Crypt::encryptString('agusbudi'),
+                'nama_lengkap' => 'Agus Budi Santoso',
+                'nama_panggilan' => 'Agus',
+                'tanggal_lahir' => Carbon::createFromDate(2000, 7, 19),
+                'jenis_kelamin' => 'Pria',
+                'no_telp' => '082345678901',
+                'id_pt' => 1,
+            ],
+            [
+                'email' => 'fitria.sari@gmail.com',
+                'password' => Crypt::encryptString('fitriasari'),
+                'nama_lengkap' => 'Fitria Sari',
+                'nama_panggilan' => 'Fitri',
+                'tanggal_lahir' => Carbon::createFromDate(2002, 11, 30),
+                'jenis_kelamin' => 'Wanita',
+                'no_telp' => '081234567890',
+                'id_pt' => 1,
+            ],
         ]);
     }
 }
