@@ -15,12 +15,13 @@ class LowonganController extends Controller
     public function daftarLowongan()
     {
 
-        $datas = Lowongan::with('prodi', 'angkatan')->orderBy('tgl_posting', 'desc')->get();
+        $datas = Lowongan::with('pengguna', 'prodi.prodi', 'angkatan')->orderBy('tgl_posting', 'desc')->get();
     
         return response()->json($datas, 200);
     }
 
-    public function getLowongan($id){
+    public function getLowongan($id)
+    {
         $lowongan = Lowongan::with('prodi', 'angkatan')->find($id);
         if (!$lowongan) {
             return response()->json(['error' => 'Profile not found'], 404);
@@ -28,9 +29,10 @@ class LowonganController extends Controller
         return response()->json($lowongan, 200);
     }
 
-    public function getLowonganByPt($pt){
+    public function getLowonganByPt($pt)
+    {
         $lowongan = Lowongan::select('*')->join('pengguna', 'lowongan.id_pengguna', '=', 'pengguna.id_pengguna')->where('pengguna.id_pt', $pt)
-        ->get();
+            ->get();
 
         return response()->json($lowongan, 200);
     }
@@ -41,13 +43,13 @@ class LowonganController extends Controller
 
         if (!$pengguna) {
             return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
-        } 
+        }
         // Validasi input
         $request->validate([
             'deskripsi' => 'required',
             'posisi' => 'required',
             'kompetisi' => 'required',
-            'deskripsi_kerja' =>'required',
+            'deskripsi_kerja' => 'required',
             'prodi.*' => 'required',
             'angkatan.*' => 'required',
         ]);
@@ -55,7 +57,7 @@ class LowonganController extends Controller
         // Buat lowongan baru
         $lowongan = Lowongan::create([
             'deskripsi' => $request->deskripsi,
-            'posisi' => $request->posisi,   
+            'posisi' => $request->posisi,
             'kompetisi' => $request->kompetisi,
             'deskripsi_kerja' => $request->deskripsi_kerja,
             'id_pengguna' => $pengguna->id_pengguna,
@@ -64,21 +66,21 @@ class LowonganController extends Controller
         foreach ($request->prodi as $key => $prodi) {
             LowonganProdi::create([
                 'id_lowongan' => $lowongan->id_lowongan,
-                'id_prodi' => $prodi,   
+                'id_prodi' => $prodi,
             ]);
         }
 
         foreach ($request->angkatan as $key => $angkatan) {
             LowonganAngkatan::create([
                 'id_lowongan' => $lowongan->id_lowongan,
-                'angkatan' => $angkatan,   
+                'angkatan' => $angkatan,
             ]);
         }
 
         return response()->json(['message' => 'Lowongan berhasil dibuat']);
     }
 
-    
+
     /**
      * Display a listing of the resource.
      */

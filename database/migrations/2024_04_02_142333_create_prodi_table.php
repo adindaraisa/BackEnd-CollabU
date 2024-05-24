@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('prodi', function (Blueprint $table) {
             $table->bigIncrements('id_prodi');
-        
             $table->foreignId('id_jurusan');
             $table->foreign('id_jurusan')->references('id_jurusan')->on('jurusan')->onDelete('cascade');
             $table->string('nama_prodi');
