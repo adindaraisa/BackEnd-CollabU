@@ -16,9 +16,9 @@ class Lowongan extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'id_pengguna', 
+        'id_pengguna',
         'deskripsi',
-        'posisi', 
+        'posisi',
         'kompetisi',
         'deskripsi_kerja',
         'tgl_posting',
@@ -28,21 +28,21 @@ class Lowongan extends Model
 
     public function pengguna(): BelongsTo
     {
-        return $this->belongsTo(Pengguna::class, 'id_pengguna','id_pengguna');
+        return $this->belongsTo(Pengguna::class, 'id_pengguna', 'id_pengguna');
     }
 
     public function jurusan(): HasMany
     {
-        return $this->hasMany(LowonganJurusan::class, 'id_lowongan','id_lowongan');
+        return $this->hasMany(LowonganJurusan::class, 'id_lowongan', 'id_lowongan');
     }
 
     public function angkatan(): HasMany
     {
-        return $this->hasMany(LowonganAngkatan::class, 'id_lowongan','id_lowongan');
+        return $this->hasMany(LowonganAngkatan::class, 'id_lowongan', 'id_lowongan');
     }
 
     public function prodi(): HasMany
     {
-        return $this->hasMany(LowonganProdi::class, 'id_lowongan','id_lowongan');
+        return $this->hasMany(LowonganProdi::class, 'id_lowongan', 'id_lowongan');
     }
 }

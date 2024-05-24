@@ -25,6 +25,8 @@ class PenggunaSeeder extends Seeder
                 'jenis_kelamin' => 'Wanita',
                 'no_telp' => '08990918911',
                 'id_pt' => 1,
+                'id_jurusan' => 1,
+                'id_prodi' => 1,
             ],
             [
                 'email' => 'jeonghan@gmail.com',
@@ -35,6 +37,8 @@ class PenggunaSeeder extends Seeder
                 'jenis_kelamin' => 'Pria',
                 'no_telp' => '085563326633',
                 'id_pt' => 1,
+                'id_jurusan' => 1,
+                'id_prodi' => 2,
             ],
             [
                 'email' => 'reni.jkt@gmail.com',
@@ -45,6 +49,8 @@ class PenggunaSeeder extends Seeder
                 'jenis_kelamin' => 'Wanita',
                 'no_telp' => '081223344556',
                 'id_pt' => 2,
+                'id_jurusan' => 2,
+                'id_prodi' => 1,
             ],
             [
                 'email' => 'agus_budi@gmail.com',
@@ -55,6 +61,8 @@ class PenggunaSeeder extends Seeder
                 'jenis_kelamin' => 'Pria',
                 'no_telp' => '082345678901',
                 'id_pt' => 1,
+                'id_jurusan' => 3,
+                'id_prodi' => 1,
             ],
             [
                 'email' => 'fitria.sari@gmail.com',
@@ -65,6 +73,8 @@ class PenggunaSeeder extends Seeder
                 'jenis_kelamin' => 'Wanita',
                 'no_telp' => '081234567890',
                 'id_pt' => 1,
+                'id_jurusan' => 1,
+                'id_prodi' => 1,
             ],
         ]);
     }

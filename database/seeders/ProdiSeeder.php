@@ -30,6 +30,10 @@ class ProdiSeeder extends Seeder
                 'id_jurusan' => '3',
                 'nama_prodi' => 'D3 Administrasi Bisnis',
             ],
+            [
+                'id_jurusan' => '4',
+                'nama_prodi' => 'S1 Akuntansi',
+            ],
         ]);
     }
 }

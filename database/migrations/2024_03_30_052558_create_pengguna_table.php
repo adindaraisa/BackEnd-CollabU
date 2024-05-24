@@ -22,6 +22,10 @@ return new class extends Migration
             $table->string('no_telp', 15)->nullable();
             $table->foreignId('id_pt')->nullable();
             $table->foreign('id_pt')->references('id_pt')->on('perguruantinggi')->onDelete('set null');
+            $table->foreignId('id_jurusan')->nullable();
+            $table->foreign('id_jurusan')->references('id_jurusan')->on('jurusan')->onDelete('set null');
+            $table->foreignId('id_prodi')->nullable();
+            $table->foreign('id_prodi')->references('id_prodi')->on('prodi')->onDelete('set null');
             $table->timestamps();
         });
     }
