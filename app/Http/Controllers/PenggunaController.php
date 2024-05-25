@@ -6,6 +6,7 @@ use App\Models\Profil;
 use App\Models\Pengguna;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 
 class PenggunaController extends Controller
 {
@@ -95,10 +96,72 @@ class PenggunaController extends Controller
         return response()->json(['message' => 'Pengguna berhasil diperbaharui']);
     }
 
-    public function index()
+    public function uploadFotoProfil(Request $request, $id)
     {
-        //
+        $pengguna = Pengguna::find($id);
+
+        if (!$pengguna) {
+            return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
+        }
+
+        $request->validate([
+            'foto_profil' => 'required|image',
+        ], [
+            'foto_profil.required' => 'File foto profil diperlukan.',
+            'foto_profil.image' => 'File foto profil harus berupa gambar.',
+        ]);
+
+        if ($request->hasFile('foto_profil')) {
+            // Hapus foto profil sebelumnya jika ada
+            if ($pengguna->foto_profil) {
+                Storage::delete($pengguna->foto_profil);
+            }
+
+            // Ambil email pengguna dan format nama file
+            $email = $pengguna->email;
+            $extension = $request->file('foto_profil')->getClientOriginalExtension();
+            $fileName = preg_replace('/[^a-zA-Z0-9]/', '_', $email) . '.' . $extension;
+
+            // Simpan file dengan nama yang baru
+            $path = $request->file('foto_profil')->storeAs('foto_profil', $fileName);
+            $pengguna->foto_profil = $fileName;
+            $pengguna->save();
+
+            return response()->json(['message' => 'Foto profil berhasil diunggah']);
+        } else {
+            return response()->json(['message' => 'Tidak ada file foto profil yang diunggah'], 400);
+        }
     }
+
+    public function getImage($id)
+    {
+        // Pastikan path sesuai dengan struktur penyimpanan Anda
+        $pengguna = Pengguna::find($id);
+
+        if (!$pengguna) {
+            return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
+        }
+
+        $path = $pengguna->foto_profil;
+
+        $path = 'foto_profil/' . $path;
+
+        // Periksa apakah file ada
+        if (Storage::exists($path)) {
+            // Dapatkan konten gambar
+            $content = Storage::get($path);
+
+            // Dapatkan tipe konten
+            $mimeType = Storage::mimeType($path);
+
+            // Langsung kembalikan respons HTTP
+            return response($content)->header('Content-Type', $mimeType);
+        } else {
+            // Jika file tidak ditemukan, kembalikan respons 404 (not found)
+            return response()->json(['message' => 'File not found'], 404);
+        }
+    }
+
 
     /**
      * Show the form for creating a new resource.

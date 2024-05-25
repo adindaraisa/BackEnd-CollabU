@@ -19,6 +19,8 @@ Route::get('/daftar-pengguna', [PenggunaController::class, 'readPengguna']);
 Route::post('/daftar', [PenggunaController::class, 'daftarPengguna']);
 Route::delete('/delete-akun/{id}', [PenggunaController::class, 'deletePengguna']);
 Route::put('/lengkapi-akun/{id}', [PenggunaController::class, 'lengkapiDataPengguna']);
+Route::post('/foto-profil/{id}', [PenggunaController::class, 'uploadFotoProfil']);
+Route::get('/pengguna/{id}', [PenggunaController::class, 'getImage']);
 
 Route::get('/profil/{id}', [ProfilController::class, 'getProfil']);
 Route::get('/daftar-profil', [ProfilController::class, 'getDaftarProfil']);

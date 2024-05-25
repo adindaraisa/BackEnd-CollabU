@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['Pria', 'Wanita'])->nullable();
             $table->string('no_telp', 15)->nullable();
+            $table->string('foto_profil')->nullable();
             $table->foreignId('id_pt')->nullable();
             $table->foreign('id_pt')->references('id_pt')->on('perguruantinggi')->onDelete('set null');
             $table->foreignId('id_jurusan')->nullable();
