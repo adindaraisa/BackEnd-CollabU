@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ProfilController extends Controller
 {
     public function getProfil($id_profil){
-        $profil = Profil::with(['pengguna','pendidikan.prodi', 'pendidikan.jurusan', 'prestasi', 'pengalaman', 'keahlian'])->find($id_profil);
+        $profil = Profil::with(['pengguna','pendidikan.prodi', 'pendidikan.jurusan.perguruantinggi', 'prestasi', 'pengalaman', 'keahlian'])->find($id_profil);
         if (!$profil) {
             return response()->json(['error' => 'Profile not found'], 404);
         }
