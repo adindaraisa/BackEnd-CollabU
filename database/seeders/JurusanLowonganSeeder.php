@@ -42,6 +42,18 @@ class JurusanLowonganSeeder extends Seeder
                 'id_lowongan' => 3,
                 'id_jurusan' => 3,
             ],
+            [
+                'id_lowongan' => 4,
+                'id_jurusan' => 1,
+            ],
+            [
+                'id_lowongan' => 5,
+                'id_jurusan' => 1,
+            ],
+            [
+                'id_lowongan' => 6,
+                'id_jurusan' => 1,
+            ],
         ]);
     }
 }

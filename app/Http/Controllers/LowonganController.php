@@ -15,10 +15,31 @@ class LowonganController extends Controller
     public function daftarLowongan()
     {
 
-        $datas = Lowongan::with('pengguna', 'prodi.prodi', 'angkatan')->orderBy('created_at', 'desc')->get();
-    
+        $datas = Lowongan::with('pengguna.prodi', 'pengguna.jurusan', 'prodi.prodi', 'jurusan.jurusan', 'angkatan')
+            ->orderBy('tgl_posting', 'desc')
+            ->get();
+
         return response()->json($datas, 200);
     }
+
+    public function daftarLowonganPerekrut($id)
+    {
+        $pengguna = Pengguna::find($id);
+
+        if (!$pengguna) {
+            return response()->json(['error' => 'Pengguna not found'], 404);
+        }
+
+        // Mengambil daftar lowongan yang diposting oleh pengguna tertentu
+        $datas = Lowongan::with('pengguna.prodi', 'pengguna.jurusan', 'prodi.prodi', 'jurusan.jurusan', 'angkatan')
+            ->where('id_pengguna', $id)
+            ->orderBy('tgl_posting', 'desc')
+            ->get();
+
+        return response()->json($datas, 200);
+    }
+
+
 
     public function getLowongan($id)
     {

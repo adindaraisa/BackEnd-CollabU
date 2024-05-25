@@ -29,6 +29,7 @@ Route::post('/profil/pengalaman/{id}', [PengalamanController::class, 'createPeng
 Route::post('/profil/keahlian/{id}', [KeahlianController::class, 'createKeahlian']);
 
 Route::get('/daftar-lowongan', [LowonganController::class, 'daftarLowongan']);
+Route::get('/daftar-lowongan/{id}', [LowonganController::class, 'daftarLowonganPerekrut']);
 Route::get('/lowongan/{id}', [LowonganController::class, 'getLowongan']);
 Route::get('/lowongan-pt/{id}', [LowonganController::class, 'getLowonganByPt']);
 Route::post('/lowongan/{id}', [LowonganController::class, 'createLowongan']);

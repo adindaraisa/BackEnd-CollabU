@@ -26,6 +26,10 @@ class JurusanSeeder extends Seeder
                 'id_pt' => '1',
                 'nama_jurusan' => 'Administrasi Niaga',
             ],
+            [
+                'id_pt' => '2',
+                'nama_jurusan' => 'Akuntansi',
+            ],
         ]);
     }
 }

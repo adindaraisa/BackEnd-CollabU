@@ -50,6 +50,31 @@ class ProdiLowonganSeeder extends Seeder
                 'id_lowongan' => 3,
                 'id_prodi' => 4,
             ],
+            [
+                'id_lowongan' => 4,
+                'id_prodi' => 1,
+            ],
+            [
+                'id_lowongan' => 4,
+                'id_prodi' => 2,
+            ],
+            [
+                'id_lowongan' => 5,
+                'id_prodi' => 1,
+            ],
+            [
+                'id_lowongan' => 5,
+                'id_prodi' => 2,
+            ],
+            [
+                'id_lowongan' => 6,
+                'id_prodi' => 1,
+            ],
+            [
+                'id_lowongan' => 6,
+                'id_prodi' => 2,
+            ],
+
         ]);
     }
 }
