@@ -13,7 +13,6 @@ class Lowongan extends Model
     use HasFactory, HasApiTokens;
     protected $table = 'lowongan';
     protected $primaryKey = 'id_lowongan';
-    public $timestamps = false;
 
     protected $fillable = [
         'id_pengguna',

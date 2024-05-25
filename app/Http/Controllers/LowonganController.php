@@ -16,7 +16,7 @@ class LowonganController extends Controller
     {
 
         $datas = Lowongan::with('pengguna.prodi', 'pengguna.jurusan', 'prodi.prodi', 'jurusan.jurusan', 'angkatan')
-            ->orderBy('tgl_posting', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return response()->json($datas, 200);
@@ -33,7 +33,7 @@ class LowonganController extends Controller
         // Mengambil daftar lowongan yang diposting oleh pengguna tertentu
         $datas = Lowongan::with('pengguna.prodi', 'pengguna.jurusan', 'prodi.prodi', 'jurusan.jurusan', 'angkatan')
             ->where('id_pengguna', $id)
-            ->orderBy('tgl_posting', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         return response()->json($datas, 200);

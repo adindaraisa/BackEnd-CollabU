@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Pelamar extends Model
 {
     use HasFactory, HasApiTokens;
-    protected $table = 'pendidikan';
+    protected $table = 'pelamar';
+    protected $primaryKey = 'id_pelamar';
     protected $fillable = [
         'id_pengguna', 
         'id_lowongan',

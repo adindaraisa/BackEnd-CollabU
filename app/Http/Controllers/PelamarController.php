@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 
 class PelamarController extends Controller
 {
-    public function getDetailPelamar($id_pelamar){
-        $pelamar = Pelamar::with('pengguna.profil.pendidikan', 'pengguna.profil.keahlian', 'pengguna.profil.prestasi', 'pengguna.profil.pengalaman', 'pengguna.jurusan')->find($id_pelamar);
+    public function getDetailPelamar($id){
+        $pelamar = Pelamar::with('pengguna.profil.pendidikan.prodi', 'pengguna.profil.pendidikan.jurusan', 'pengguna.profil.keahlian', 'pengguna.profil.prestasi', 'pengguna.profil.pengalaman')->where('id_pelamar', $id);
 
         if (!$pelamar) {
             return response()->json(['error' => 'Pelamar tidak ditemukan'], 404);
@@ -18,8 +18,17 @@ class PelamarController extends Controller
         return response()->json($pelamar, 200);
     }
 
-    public function getPelamar($id_pelamar){
-        $pelamar = Pelamar::with('pengguna.profil.pendidikan', 'pengguna.profil.keahlian', 'pengguna.profil.prestasi', 'pengguna.profil.pengalaman', 'pengguna.jurusan')->get();
+    public function getPelamar(){
+        $pelamar = Pelamar::with('pengguna.profil.pendidikan.prodi', 'pengguna.profil.pendidikan.jurusan', 'pengguna.profil.keahlian', 'pengguna.profil.prestasi', 'pengguna.profil.pengalaman')
+        ->get();
+
+        return response()->json($pelamar, 200);
+    }
+
+    public function getPelamarbyLowongan($id){
+        $pelamar = Pelamar::with('pengguna.profil.pendidikan.prodi', 'pengguna.profil.pendidikan.jurusan', 'pengguna.profil.keahlian', 'pengguna.profil.prestasi', 'pengguna.profil.pengalaman')
+        ->where('id_lowongan', $id)
+        ->get();
 
         return response()->json($pelamar, 200);
     }
