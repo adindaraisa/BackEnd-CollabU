@@ -22,6 +22,18 @@ class ProfilSeeder extends Seeder
                 'id_pengguna' => '2',
                 'tentang_saya' => 'Sangat Fenomenal Sekali',
             ],
+            [
+                'id_pengguna' => '3',
+                'tentang_saya' => 'Sangat Fenomenal Sekali',
+            ],
+            [
+                'id_pengguna' => '4',
+                'tentang_saya' => 'Sangat Fenomenal Sekali',
+            ],
+            [
+                'id_pengguna' => '5',
+                'tentang_saya' => 'Sangat Fenomenal Sekali',
+            ],
         ]);
     }
 }
