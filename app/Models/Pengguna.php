@@ -8,10 +8,13 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Auth\Authenticatable;
 
-class Pengguna extends Model
+class Pengguna extends Model implements AuthenticatableContract
 {
-    use HasFactory, HasApiTokens;
+    use HasFactory, HasApiTokens, Authenticatable;
+
     protected $table = 'pengguna';
     protected $primaryKey = 'id_pengguna';
     protected $fillable = [
@@ -26,7 +29,6 @@ class Pengguna extends Model
         'id_jurusan',
         'id_prodi',
     ];
-
 
     public function perguruantinggi(): BelongsTo
     {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\KeahlianController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\PelamarController;
@@ -10,6 +11,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PrestasiController;
+
+Route::post('/login', [AuthenticationController::class, 'login'])->middleware('guest');
+Route::post('/logout', [AuthenticationController::class, 'logout']);
 
 Route::get('/daftar-pengguna', [PenggunaController::class, 'readPengguna']);
 Route::post('/daftar', [PenggunaController::class, 'daftarPengguna']);
