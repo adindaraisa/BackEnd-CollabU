@@ -52,4 +52,9 @@ class Pengguna extends Model
     {
         return $this->hasMany(Lowongan::class, 'id_pengguna', 'id_pengguna');
     }
+
+    public function pelamar(): HasMany
+    {
+        return $this->hasMany(Pelamar::class, 'id_pengguna', 'id_pengguna');
+    }
 }
