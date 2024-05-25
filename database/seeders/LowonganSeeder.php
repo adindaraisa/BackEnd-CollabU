@@ -20,7 +20,7 @@ class LowonganSeeder extends Seeder
                 'posisi' => 'UI/UX Designer',
                 'kompetisi' => 'Hackathon Nasional 2024',
                 'deskripsi_kerja' => 'Mendesain antarmuka pengguna yang intuitif dan menarik.',
-                'tgl_posting' => now()->subDays(2),
+                'created_at' => now()->subDays(1),
             ],
             [
                 'id_pengguna' => 2,
@@ -28,7 +28,7 @@ class LowonganSeeder extends Seeder
                 'posisi' => 'Full Stack Developer',
                 'kompetisi' => 'Startup Weekend 2024',
                 'deskripsi_kerja' => 'Mengembangkan aplikasi web dari frontend hingga backend.',
-                'tgl_posting' => now()->subDays(5),
+                'created_at' => now()->subDays(2),
             ],
             [
                 'id_pengguna' => 2,
@@ -36,7 +36,7 @@ class LowonganSeeder extends Seeder
                 'posisi' => 'Data Scientist',
                 'kompetisi' => 'Data Science Challenge 2024',
                 'deskripsi_kerja' => 'Menganalisis data dan memberikan insights yang berguna.',
-                'tgl_posting' => now()->subDays(10),
+                'created_at' => now()->subDays(3),
             ],
             [
                 'id_pengguna' => 1,
@@ -44,7 +44,7 @@ class LowonganSeeder extends Seeder
                 'posisi' => 'Mobile Developer',
                 'kompetisi' => 'App Innovation Contest 2024',
                 'deskripsi_kerja' => 'Mengembangkan aplikasi mobile yang inovatif dan user-friendly.',
-                'tgl_posting' => now()->subDays(3),
+                'created_at' => now()->subDays(4),
             ],
             [
                 'id_pengguna' => 2,
@@ -52,7 +52,7 @@ class LowonganSeeder extends Seeder
                 'posisi' => 'Graphic Designer',
                 'kompetisi' => 'Creative Arts Competition 2024',
                 'deskripsi_kerja' => 'Membuat desain grafis yang menarik untuk berbagai media.',
-                'tgl_posting' => now()->subDays(7),
+                'created_at' => now()->subDays(5),
             ],
             [
                 'id_pengguna' => 1,
@@ -60,7 +60,7 @@ class LowonganSeeder extends Seeder
                 'posisi' => 'Software Engineer',
                 'kompetisi' => 'Tech Fest 2024',
                 'deskripsi_kerja' => 'Membangun dan memelihara sistem perangkat lunak yang kompleks.',
-                'tgl_posting' => now()->subDays(1),
+                'created_at' => now()->subDays(6),
             ],
         ]);
     }

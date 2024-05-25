@@ -27,8 +27,16 @@ class ProdiSeeder extends Seeder
                 'nama_prodi' => 'D3 Teknik Mesin',
             ],
             [
+                'id_jurusan' => '2',
+                'nama_prodi' => 'D3 Teknik Aeronautika',
+            ],
+            [
                 'id_jurusan' => '3',
                 'nama_prodi' => 'D3 Administrasi Bisnis',
+            ],
+            [
+                'id_jurusan' => '3',
+                'nama_prodi' => 'D3 Usaha Perjalanan Wisata',
             ],
         ]);
     }

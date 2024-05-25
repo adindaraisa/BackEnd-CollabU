@@ -15,14 +15,14 @@ class LowonganController extends Controller
     public function daftarLowongan()
     {
 
-        $datas = Lowongan::with('pengguna', 'prodi.prodi', 'angkatan')->orderBy('tgl_posting', 'desc')->get();
+        $datas = Lowongan::with('pengguna', 'prodi.prodi', 'angkatan')->orderBy('created_at', 'desc')->get();
     
         return response()->json($datas, 200);
     }
 
     public function getLowongan($id)
     {
-        $lowongan = Lowongan::with('prodi', 'angkatan')->find($id);
+        $lowongan = Lowongan::with('pengguna', 'prodi.prodi', 'angkatan')->find($id);
         if (!$lowongan) {
             return response()->json(['error' => 'Profile not found'], 404);
         }

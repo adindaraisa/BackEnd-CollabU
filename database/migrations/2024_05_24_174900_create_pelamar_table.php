@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lowongan', function (Blueprint $table) {
-            $table->bigIncrements('id_lowongan');
-            $table->text('deskripsi');
-            $table->string('posisi');
-            $table->string('kompetisi');
-            $table->text('deskripsi_kerja');
+        Schema::create('pelamar', function (Blueprint $table) {
+            $table->id();
             $table->foreign('id_pengguna')->references('id_pengguna')->on('pengguna')->onDelete('set null');
             $table->foreignId('id_pengguna')->nullable();
-            $table->enum('status', ['buka', 'tutup'])->default('buka');
+            $table->foreign('id_lowongan')->references('id_lowongan')->on('lowongan')->onDelete('set null');
+            $table->foreignId('id_lowongan')->nullable();
+            $table->enum('status', ['diproses', 'diterima', 'ditolak'])->default('diproses');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lowongan');
+        Schema::dropIfExists('pelamar');
     }
 };
