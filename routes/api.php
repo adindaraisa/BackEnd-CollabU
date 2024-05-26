@@ -28,12 +28,16 @@ Route::put('/profil/tentang-saya/{id}', [ProfilController::class, 'tambahTentang
 
 Route::post('/profil/pendidikan/{id}', [PendidikanController::class, 'createPendidikan']);
 Route::get('/profil/pendidikan/{id}', [PendidikanController::class, 'getPendidikan']);
+Route::put('/profil/pendidikan/edit/{id}', [PendidikanController::class, 'editPendidikan']);
 
 Route::post('/profil/prestasi/{id}', [PrestasiController::class, 'createPrestasi']);
+Route::put('/profil/prestasi/edit/{id}', [PendidikanController::class, 'editPrestasi']);
 
 Route::post('/profil/pengalaman/{id}', [PengalamanController::class, 'createPengalaman']);
+Route::put('/profil/pengalaman/edit/{id}', [PendidikanController::class, 'editPengalaman']);
 
 Route::post('/profil/keahlian/{id}', [KeahlianController::class, 'createKeahlian']);
+Route::delete('/profil/keahlian/hapus/{id}', [PendidikanController::class, 'deleteKeahlian']);
 
 Route::get('/daftar-lowongan', [LowonganController::class, 'daftarLowongan']);
 Route::get('/daftar-lowongan/{id}', [LowonganController::class, 'daftarLowonganPerekrut']);

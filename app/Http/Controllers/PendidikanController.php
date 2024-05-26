@@ -47,13 +47,29 @@ class PendidikanController extends Controller
         return response()->json($profil, 200);
     }
 
-    public function editPendidikan($id) {
+    public function editPendidikan(Request $request, $id) {
         $profil = Profil::find($id);
 
         if (!$profil) {
             return response()->json(['message' => 'Profil tidak ditemukan'], 404);
         }
         
+        $pendidikan = Pendidikan::where('id_profil', $profil->id_profil)->first();
+
+        if (!$pendidikan) {
+            return response()->json(['message' => 'Pendidikan tidak ditemukan'], 404);
+        }
+        
+        $request->validate([
+            'id_jurusan' => 'required',
+            'id_prodi' => 'required',
+            'tahun_masuk' => 'required',
+        ]);
+
+        $pendidikan->id_jurusan = $request->id_jurusan;
+        $pendidikan->id_prodi = $request->id_prodi;
+        $pendidikan->tahun_masuk = $request->tahun_masuk;
+        $pendidikan->save();
         
     }
 

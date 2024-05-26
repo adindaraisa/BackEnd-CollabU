@@ -28,4 +28,17 @@ class KeahlianController extends Controller
 
         return response()->json(['message' => 'Keahlian berhasil dibuat']);
     }
+
+    public function deleteKeahlian($id)
+    {
+        $keahlian = Keahlian::find($id);
+
+        if (!$keahlian) {
+            return response()->json(['message' => 'Keahlian tidak ditemukan'], 404);
+        }
+
+        $keahlian->delete();
+
+        return response()->json(['message' => 'Keahlian berhasil dihapus']);
+    }
 }

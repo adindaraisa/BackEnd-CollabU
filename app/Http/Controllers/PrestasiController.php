@@ -32,4 +32,27 @@ class PrestasiController extends Controller
 
         return response()->json(['message' => 'Prestasi berhasil dibuat']);
     }
+
+    public function editPrestasi(Request $request, $id) {
+        $prestasi = Prestasi::find($id);
+
+        if (!$prestasi) {
+            return response()->json(['message' => 'Prestasi tidak ditemukan'], 404);
+        }
+        
+        $request->validate([
+            'nama_penghargaan' => 'required',
+            'kategori' => 'required',
+            'tahun' => 'required',
+        ]);
+
+        $prestasi->nama_penghargaan = $request->nama_penghargaan;
+        $prestasi->kategori = $request->kategori;
+        $prestasi->tahun = $request->tahun;
+        $prestasi->save();
+
+        return response()->json(['message' => 'Prestasi berhasil diperarui']);
+        
+    }
+
 }
