@@ -51,6 +51,10 @@ class PelamarSeeder extends Seeder
                 'id_pengguna' => 1,
             ],
             [
+                'id_lowongan' => 5,
+                'id_pengguna' => 1,
+            ],
+            [
                 'id_lowongan' => 6,
                 'id_pengguna' => 2,
             ],
