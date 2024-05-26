@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PrestasiController;
+use App\Http\Controllers\ResumeController;
 
 Route::post('/login', [AuthenticationController::class, 'login'])->middleware('guest');
 Route::post('/logout', [AuthenticationController::class, 'logout']);
@@ -21,6 +22,8 @@ Route::delete('/delete-akun/{id}', [PenggunaController::class, 'deletePengguna']
 Route::put('/lengkapi-akun/{id}', [PenggunaController::class, 'lengkapiDataPengguna']);
 Route::post('/foto-profil/{id}', [PenggunaController::class, 'uploadFotoProfil']);
 Route::get('/pengguna/{id}', [PenggunaController::class, 'getImage']);
+Route::post('/resume/{id}', [ResumeController::class, 'uploadResume']);
+Route::get('/lihat-resume/{id}', [ResumeController::class, 'getResume']);
 
 Route::get('/profil/{id}', [ProfilController::class, 'getProfil']);
 Route::get('/daftar-profil', [ProfilController::class, 'getDaftarProfil']);
