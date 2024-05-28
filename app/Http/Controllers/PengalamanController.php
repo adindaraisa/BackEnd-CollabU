@@ -39,7 +39,7 @@ class PengalamanController extends Controller
         $pengalaman = Pengalaman::find($id);
 
         if (!$pengalaman) {
-            return response()->json(['message' => 'Pendidikan tidak ditemukan'], 404);
+            return response()->json(['message' => 'Pengalaman tidak ditemukan'], 404);
         }
         
         $request->validate([
