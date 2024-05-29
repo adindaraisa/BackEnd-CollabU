@@ -63,13 +63,17 @@ class ProfilController extends Controller
         $keahlian = Keahlian::where('id_profil', $profil->id_profil)->get();
         $prestasi = Prestasi::where('id_profil', $profil->id_profil)->get();
         $pengalaman = Pengalaman::where('id_profil', $profil->id_profil)->get();
+        $resume = $profil->resume;
+        $tentang_saya = $profil->tentang_saya;
     
-        if ($pendidikan->isNotEmpty() && $keahlian->isNotEmpty() && $prestasi->isNotEmpty() && $pengalaman->isNotEmpty()) {
+        // Mengecek kelengkapan profil
+        if ($pendidikan->isNotEmpty() && $keahlian->isNotEmpty() && $prestasi->isNotEmpty() && $pengalaman->isNotEmpty() && !empty($resume) && !empty($tentang_saya)) {
             return response()->json(['message' => 'Profil Lengkap']);
         }
     
         return response()->json(['message' => 'Profil tidak lengkap']);
     }
+    
     
 
     
