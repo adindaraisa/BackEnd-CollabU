@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Keahlian;
 use App\Models\Profil;
 use App\Models\Pendidikan;
+use App\Models\Pengalaman;
+use App\Models\Pengguna;
+use App\Models\Prestasi;
 use Illuminate\Http\Request;
 
 class ProfilController extends Controller
@@ -41,6 +45,33 @@ class ProfilController extends Controller
 
         return response()->json(['message' => 'Tentang saya berhasil ditambahkan']);
     }
+
+    public function cekKelengkapanProfil($id) {
+        $pengguna = Pengguna::find($id);
+    
+        if (!$pengguna) {
+            return response()->json(['error' => 'Pengguna not found'], 404);
+        }
+    
+        $profil = Profil::where('id_pengguna', $pengguna->id_pengguna)->first();
+    
+        if (!$profil) {
+            return response()->json(['error' => 'Profile not found'], 404);
+        }
+    
+        $pendidikan = Pendidikan::where('id_profil', $profil->id_profil)->get();
+        $keahlian = Keahlian::where('id_profil', $profil->id_profil)->get();
+        $prestasi = Prestasi::where('id_profil', $profil->id_profil)->get();
+        $pengalaman = Pengalaman::where('id_profil', $profil->id_profil)->get();
+    
+        if ($pendidikan->isNotEmpty() && $keahlian->isNotEmpty() && $prestasi->isNotEmpty() && $pengalaman->isNotEmpty()) {
+            return response()->json(['message' => 'Profil Lengkap']);
+        }
+    
+        return response()->json(['message' => 'Profil tidak lengkap']);
+    }
+    
+
     
 }
 

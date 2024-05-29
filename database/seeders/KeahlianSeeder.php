@@ -34,6 +34,26 @@ class KeahlianSeeder extends Seeder
                 'id_profil' => 5,
                 'keahlian' => "Water Bending",
             ],
+            [
+                'id_profil' => 6,
+                'keahlian' => "Water Bending",
+            ],
+            [
+                'id_profil' => 7,
+                'keahlian' => "Water Bending",
+            ],
+            [
+                'id_profil' => 8,
+                'keahlian' => "Water Bending",
+            ],
+            [
+                'id_profil' => 9,
+                'keahlian' => "Water Bending",
+            ],
+            [
+                'id_profil' => 10,
+                'keahlian' => "Water Bending",
+            ],
         ]);
     }
 }

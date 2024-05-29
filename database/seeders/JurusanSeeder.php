@@ -30,6 +30,10 @@ class JurusanSeeder extends Seeder
                 'id_pt' => '2',
                 'nama_jurusan' => 'Akuntansi',
             ],
+            [
+                'id_pt' => '2',
+                'nama_jurusan' => 'Bisnis dan Manajemen',
+            ],
         ]);
     }
 }

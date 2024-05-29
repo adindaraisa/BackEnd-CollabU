@@ -49,6 +49,41 @@ class PengalamanSeeder extends Seeder
                 'tgl_mulai' => "2015-05",
                 'tgl_selesai' => "2023-05",
             ],
+            [
+                'id_profil' => 6,
+                'posisi' => "Front End Web Developer",
+                'perusahaan' => "Pledis Entertainment",
+                'tgl_mulai' => "2015-05",
+                'tgl_selesai' => "2023-05",
+            ],
+            [
+                'id_profil' => 7,
+                'posisi' => "Digital Marketing",
+                'perusahaan' => "Pledis Entertainment",
+                'tgl_mulai' => "2015-05",
+                'tgl_selesai' => "2023-05",
+            ],
+            [
+                'id_profil' => 8,
+                'posisi' => "Back End Developer",
+                'perusahaan' => "Pledis Entertainment",
+                'tgl_mulai' => "2015-05",
+                'tgl_selesai' => "2023-05",
+            ],
+            [
+                'id_profil' => 9,
+                'posisi' => "Social Media Manager",
+                'perusahaan' => "Pledis Entertainment",
+                'tgl_mulai' => "2015-05",
+                'tgl_selesai' => "2023-05",
+            ],
+            [
+                'id_profil' => 10,
+                'posisi' => "UI/UX Designer",
+                'perusahaan' => "Pledis Entertainment",
+                'tgl_mulai' => "2015-05",
+                'tgl_selesai' => "2023-05",
+            ],
         ]);
     }
 }

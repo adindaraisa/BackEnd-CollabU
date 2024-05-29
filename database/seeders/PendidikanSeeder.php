@@ -34,14 +34,44 @@ class PendidikanSeeder extends Seeder
             ],
             [
                 'id_profil' => 4,
+                'id_prodi' => 5,
+                'id_jurusan' => 3,
+                'tahun_masuk' => 2022,
+            ],
+            [
+                'id_profil' => 5,
+                'id_prodi' => 7,
+                'id_jurusan' => 4,
+                'tahun_masuk' => 2022,
+            ],
+            [
+                'id_profil' => 6,
+                'id_prodi' => 1,
+                'id_jurusan' => 1,
+                'tahun_masuk' => 2022,
+            ],
+            [
+                'id_profil' => 7,
                 'id_prodi' => 4,
                 'id_jurusan' => 2,
                 'tahun_masuk' => 2022,
             ],
             [
-                'id_profil' => 5,
+                'id_profil' => 8,
                 'id_prodi' => 5,
                 'id_jurusan' => 3,
+                'tahun_masuk' => 2022,
+            ],
+            [
+                'id_profil' => 9,
+                'id_prodi' => 1,
+                'id_jurusan' => 1,
+                'tahun_masuk' => 2022,
+            ],
+            [
+                'id_profil' => 10,
+                'id_prodi' => 8,
+                'id_jurusan' => 5,
                 'tahun_masuk' => 2022,
             ],
         ]);

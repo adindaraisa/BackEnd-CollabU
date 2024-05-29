@@ -87,4 +87,32 @@ class PelamarController extends Controller
         return response()->json(['message' => 'Pelamar berhasil melamar']);
 
     }
+
+    public function daftarPelamarDitolak($id){
+        $lowongan = Lowongan::find($id);
+
+        if (!$lowongan) {
+            return response()->json(['message' => 'Lowongan tidak ditemukan'], 404);
+        }
+
+        $pelamar = Pelamar::with('pengguna')->where('id_lowongan', $lowongan->id_lowongan)
+        ->where('status', 'ditolak')
+        ->get();
+
+        return response()->json($pelamar, 200);
+    }
+
+    public function daftarPelamarDiterima($id){
+        $lowongan = Lowongan::find($id);
+
+        if (!$lowongan) {
+            return response()->json(['message' => 'Lowongan tidak ditemukan'], 404);
+        }
+
+        $pelamar = Pelamar::with('pengguna')->where('id_lowongan', $lowongan->id_lowongan)
+        ->where('status', 'diterima')
+        ->get();
+
+        return response()->json($pelamar, 200);
+    }
 }

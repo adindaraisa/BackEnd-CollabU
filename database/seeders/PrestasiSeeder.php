@@ -44,6 +44,36 @@ class PrestasiSeeder extends Seeder
                 'kategori' => "Juara 1 E-Government",
                 'tahun' => "2022",
             ],
+            [
+                'id_profil' => 6,
+                'nama_penghargaan' => "Kompetisi Mahasiswa Informatika Politeknik Nasional",
+                'kategori' => "Juara 1 Cipta Inovasi",
+                'tahun' => "2022",
+            ],
+            [
+                'id_profil' => 7,
+                'nama_penghargaan' => "Kompetisi Penerbangan Nasional",
+                'kategori' => "Juara 1 Penerbangan",
+                'tahun' => "2022",
+            ],
+            [
+                'id_profil' => 8,
+                'nama_penghargaan' => "Program Kreativitas Mahasiswa",
+                'kategori' => "Pendanaan Karya Cipta",
+                'tahun' => "2022",
+            ],
+            [
+                'id_profil' => 9,
+                'nama_penghargaan' => "Kompetisi Mahasiswa Informatika Politeknik Nasional",
+                'kategori' => "Juara 1 Cyber Security",
+                'tahun' => "2022",
+            ],
+            [
+                'id_profil' => 10,
+                'nama_penghargaan' => "Kompetisi Bisnis Nasional",
+                'kategori' => "Juara 1 Business Plan",
+                'tahun' => "2022",
+            ],
         ]);
     }
 }

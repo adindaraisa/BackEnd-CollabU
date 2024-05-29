@@ -44,7 +44,15 @@ class PenggunaController extends Controller
     public function readPengguna()
     {
 
-        $datas = Pengguna::with('PerguruanTinggi')->get();
+        $datas = Pengguna::with('perguruantinggi')->get();
+    
+        return response()->json($datas, 200);
+    }
+
+    public function getPenggunabyId($id)
+    {
+
+        $datas = Pengguna::with('perguruantinggi','jurusan', 'prodi')->find($id);
     
         return response()->json($datas, 200);
     }

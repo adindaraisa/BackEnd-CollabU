@@ -58,4 +58,17 @@ class PengalamanController extends Controller
         return response()->json(['message' => 'Pengalaman berhasil diperarui']);
         
     }
+
+    public function deletePengalaman($id)
+    {
+        $pengalaman = Pengalaman::find($id);
+
+        if (!$pengalaman) {
+            return response()->json(['message' => 'pengalaman tidak ditemukan'], 404);
+        }
+
+        $pengalaman->delete();
+
+        return response()->json(['message' => 'pengalaman berhasil dihapus']);
+    }
 }

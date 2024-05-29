@@ -73,4 +73,17 @@ class PendidikanController extends Controller
         
     }
 
+    public function deletePendidikan($id)
+    {
+        $pendidikan = Pendidikan::find($id);
+
+        if (!$pendidikan) {
+            return response()->json(['message' => 'pendidikan tidak ditemukan'], 404);
+        }
+
+        $pendidikan->delete();
+
+        return response()->json(['message' => 'pendidikan berhasil dihapus']);
+    }
+
 }

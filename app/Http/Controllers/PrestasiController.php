@@ -55,4 +55,17 @@ class PrestasiController extends Controller
         
     }
 
+    public function deletePrestasi($id)
+    {
+        $prestasi = Prestasi::find($id);
+
+        if (!$prestasi) {
+            return response()->json(['message' => 'prestasi tidak ditemukan'], 404);
+        }
+
+        $prestasi->delete();
+
+        return response()->json(['message' => 'prestasi berhasil dihapus']);
+    }
+
 }
