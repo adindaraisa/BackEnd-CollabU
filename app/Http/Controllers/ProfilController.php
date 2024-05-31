@@ -68,11 +68,12 @@ class ProfilController extends Controller
     
         // Mengecek kelengkapan profil
         if ($pendidikan->isNotEmpty() && $keahlian->isNotEmpty() && $prestasi->isNotEmpty() && $pengalaman->isNotEmpty() && !empty($resume) && !empty($tentang_saya)) {
-            return response()->json(['message' => 'Profil Lengkap']);
+            return response()->json(['status' => true]);
         }
     
-        return response()->json(['message' => 'Profil tidak lengkap']);
+        return response()->json(['status' => false]);
     }
+    
     
     
 
