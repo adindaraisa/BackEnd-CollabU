@@ -64,6 +64,33 @@ class PelamarController extends Controller
         return response()->json(['message' => 'Status pelamar berhasil dirubah']);
     }
 
+    public function cekSudahDaftar(Request $request){
+        $request->validate([
+            'id_pengguna' => 'required',
+            'id_lowongan' => 'required',
+        ]);
+
+        $pengguna = Pengguna::find($request->id_pengguna);
+
+        if (!$pengguna) {
+            return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
+        }
+
+        $lowongan = Lowongan::find($request->id_lowongan);
+
+        if (!$lowongan) {
+            return response()->json(['message' => 'Lowongan tidak ditemukan'], 404);
+        }
+
+        $pelamar = Pelamar::where('id_pengguna', $pengguna->id_pengguna)->where('id_lowongan', $lowongan->id_lowongan)->first();
+
+        if ($pelamar) {
+            return response()->json(['status' => true]);
+        }
+
+        return response()->json(['status' => false]);
+    }
+
     public function createPelamar(Request $request)
     {
 
