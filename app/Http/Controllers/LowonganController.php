@@ -22,6 +22,17 @@ class LowonganController extends Controller
         return response()->json($datas, 200);
     }
 
+    public function daftarLowonganYangBuka()
+    {
+
+        $datas = Lowongan::with('pengguna.prodi', 'pengguna.jurusan', 'prodi.prodi', 'jurusan.jurusan', 'angkatan')
+            ->where('status', 'buka')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json($datas, 200);
+    }
+
     public function daftarLowonganPerekrut($id)
     {
         $pengguna = Pengguna::find($id);
@@ -109,6 +120,19 @@ class LowonganController extends Controller
         return response()->json(['message' => 'Lowongan berhasil dibuat']);
     }
 
+    public function tutupLowongan($id){
+        $lowongan = Lowongan::find($id);
+
+        if (!$lowongan) {
+            return response()->json(['message' => 'lowongan tidak ditemukan'], 404);
+        }
+
+        $lowongan->status = 'tutup';
+        $lowongan->save();
+
+        return response()->json(['message' => 'Lowongan berhasil ditutup']);
+
+    }
 
     /**
      * Display a listing of the resource.

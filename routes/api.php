@@ -54,6 +54,8 @@ Route::get('/daftar-lowongan/{id}', [LowonganController::class, 'daftarLowonganP
 Route::get('/lowongan/{id}', [LowonganController::class, 'getLowongan']);
 Route::get('/lowongan-pt/{id}', [LowonganController::class, 'getLowonganByPt']);
 Route::post('/lowongan/{id}', [LowonganController::class, 'createLowongan']);
+Route::put('/tutup-lowongan/{id}', [LowonganController::class, 'tutupLowongan']);
+Route::get('/daftar-lowongan-buka', [LowonganController::class, 'daftarLowonganYangBuka']);
 
 Route::post('/daftar-pelamar', [PelamarController::class, 'createPelamar']);
 Route::put('/tolak-pelamar/{id}', [PelamarController::class, 'tolakPelamar']);
