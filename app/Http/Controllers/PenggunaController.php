@@ -20,7 +20,7 @@ class PenggunaController extends Controller
             'email' => 'required|unique:pengguna',
             'password' => 'required',
             'nama_lengkap' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'id_pt' =>'required',
+            'id_pt' => 'required',
         ], [
             'email.unique' => 'email sudah digunakan.',
             'nama_lengkap.regex' => 'Nama hanya boleh diisi dengan huruf.',
@@ -29,7 +29,7 @@ class PenggunaController extends Controller
         $pengguna = Pengguna::create([
             'email' => $request->email,
             'password' => Crypt::encryptString($request->password),
-            'nama_lengkap' => $request->nama_lengkap,   
+            'nama_lengkap' => $request->nama_lengkap,
             'id_pt' => $request->id_pt,
         ]);
 
@@ -45,15 +45,15 @@ class PenggunaController extends Controller
     {
 
         $datas = Pengguna::with('perguruantinggi')->get();
-    
+
         return response()->json($datas, 200);
     }
 
     public function getPenggunabyId($id)
     {
 
-        $datas = Pengguna::with('perguruantinggi','jurusan', 'prodi')->find($id);
-    
+        $datas = Pengguna::with('perguruantinggi', 'jurusan', 'prodi')->find($id);
+
         return response()->json($datas, 200);
     }
 
@@ -76,19 +76,19 @@ class PenggunaController extends Controller
 
         if (!$pengguna) {
             return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
-        } 
+        }
 
         $request->validate([
             'email' => 'required',
-            'nama_lengkap' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'nama_lengkap' => 'required|regex:/^[a-zA-Z\s\-]+$/',
             'nama_panggilan' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'tanggal_lahir'=> 'required',
-            'jenis_kelamin'=> 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
             'no_telp' => 'required|regex:/^\d+$/',
         ], [
             'nama_lengkap.regex' => 'Nama hanya boleh diisi dengan huruf.',
             'nama_panggilan.regex' => 'Nama hanya boleh diisi dengan huruf.',
-            'no_telp.regex' => 'No telepon hanya boleh diisi dengan angka.', 
+            'no_telp.regex' => 'No telepon hanya boleh diisi dengan angka.',
         ]);
 
 
