@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Profil extends Model
 {
@@ -25,9 +26,9 @@ class Profil extends Model
         return $this->belongsTo(Pengguna::class, 'id_pengguna','id_pengguna');
     }
 
-    public function pendidikan(): HasMany
+    public function pendidikan(): HasOne
     {
-        return $this->hasMany(Pendidikan::class, 'id_profil','id_profil');
+        return $this->hasOne(Pendidikan::class, 'id_profil','id_profil');
     }
 
     public function prestasi(): HasMany

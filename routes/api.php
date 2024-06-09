@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KeahlianController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\PelamarController;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\PrestasiController;
+use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\ResumeController;
 
 Route::post('/login', [AuthenticationController::class, 'login'])->middleware('guest');
@@ -61,3 +63,6 @@ Route::get('/pelamar', [PelamarController::class, 'getPelamar']);
 Route::get('/pelamar-lowongan/{id}', [PelamarController::class, 'getPelamarbyLowongan']);
 Route::get('/pelamar/lowongan/ditolak/{id}', [PelamarController::class, 'daftarPelamarDitolak']);
 Route::get('/pelamar/lowongan/diterima/{id}', [PelamarController::class, 'daftarPelamarDiterima']);
+
+Route::get('/jurusan', [JurusanController::class, 'getJurusan']);
+Route::get('/prodi', [ProdiController::class, 'getProdi']);
