@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 
 class PelamarController extends Controller
 {
-    public function getDetailPelamar($id){
+    public function getDetailPelamar($id)
+    {
         $pelamar = Pelamar::with('pengguna.profil.pendidikan.prodi', 'pengguna.profil.pendidikan.jurusan', 'pengguna.profil.keahlian', 'pengguna.profil.prestasi', 'pengguna.profil.pengalaman')->where('id_pelamar', $id);
 
         if (!$pelamar) {
@@ -18,22 +19,25 @@ class PelamarController extends Controller
         return response()->json($pelamar, 200);
     }
 
-    public function getPelamar(){
+    public function getPelamar()
+    {
         $pelamar = Pelamar::with('pengguna.profil.pendidikan.prodi', 'pengguna.profil.pendidikan.jurusan', 'pengguna.profil.keahlian', 'pengguna.profil.prestasi', 'pengguna.profil.pengalaman')
-        ->get();
+            ->get();
 
         return response()->json($pelamar, 200);
     }
 
-    public function getPelamarbyLowongan($id){
-        $pelamar = Pelamar::with('pengguna.profil.pendidikan.prodi', 'pengguna.profil.pendidikan.jurusan', 'pengguna.profil.keahlian', 'pengguna.profil.prestasi', 'pengguna.profil.pengalaman')
-        ->where('id_lowongan', $id)
-        ->get();
+    public function getPelamarbyLowongan($id)
+    {
+        $pelamar = Pelamar::with('pengguna.profil.pendidikan.prodi', 'pengguna.profil.pendidikan.jurusan', 'pengguna.profil.keahlian', 'pengguna.profil.prestasi', 'pengguna.profil.pengalaman',)
+            ->where('id_lowongan', $id)
+            ->get();
 
         return response()->json($pelamar, 200);
     }
 
-    public function terimaPelamar($id){
+    public function terimaPelamar($id)
+    {
         $pelamar = Pelamar::find($id);
 
         if (!$pelamar) {
@@ -46,7 +50,8 @@ class PelamarController extends Controller
         return response()->json(['message' => 'Status pelamar berhasil dirubah']);
     }
 
-    public function tolakPelamar($id){
+    public function tolakPelamar($id)
+    {
         $pelamar = Pelamar::find($id);
 
         if (!$pelamar) {
@@ -59,7 +64,8 @@ class PelamarController extends Controller
         return response()->json(['message' => 'Status pelamar berhasil dirubah']);
     }
 
-    public function createPelamar(Request $request){
+    public function createPelamar(Request $request)
+    {
 
         $request->validate([
             'id_pengguna' => 'required',
@@ -85,34 +91,20 @@ class PelamarController extends Controller
         ]);
 
         return response()->json(['message' => 'Pelamar berhasil melamar']);
-
     }
 
-    public function daftarPelamarDitolak($id){
-        $lowongan = Lowongan::find($id);
-
-        if (!$lowongan) {
-            return response()->json(['message' => 'Lowongan tidak ditemukan'], 404);
-        }
-
-        $pelamar = Pelamar::with('pengguna')->where('id_lowongan', $lowongan->id_lowongan)
-        ->where('status', 'ditolak')
-        ->get();
-
-        return response()->json($pelamar, 200);
+    public function daftarLowonganDitolak($id_pelamar)
+    {
+        //disini
     }
 
-    public function daftarPelamarDiterima($id){
-        $lowongan = Lowongan::find($id);
+    public function daftarLowonganDiterima($id_pelamar)
+    {
+        // disini
+    }
 
-        if (!$lowongan) {
-            return response()->json(['message' => 'Lowongan tidak ditemukan'], 404);
-        }
-
-        $pelamar = Pelamar::with('pengguna')->where('id_lowongan', $lowongan->id_lowongan)
-        ->where('status', 'diterima')
-        ->get();
-
-        return response()->json($pelamar, 200);
+    public function daftarLowonganDiproses($id_pelamar)
+    {
+        // disini
     }
 }
