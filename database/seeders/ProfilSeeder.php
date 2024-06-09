@@ -17,42 +17,52 @@ class ProfilSeeder extends Seeder
             [
                 'id_pengguna' => '1',
                 'tentang_saya' => 'Sangat Fenomenal Sekali',
+                'resume' => 'resume/adinda123_gmail_com.pdf',
             ],
             [
                 'id_pengguna' => '2',
                 'tentang_saya' => 'Sangat Fenomenal Sekali',
+                'resume' => 'resume/adinda123_gmail_com.pdf',
             ],
             [
                 'id_pengguna' => '3',
                 'tentang_saya' => 'Sangat Fenomenal Sekali',
+                'resume' => 'resume/adinda123_gmail_com.pdf',
             ],
             [
                 'id_pengguna' => '4',
                 'tentang_saya' => 'Sangat Fenomenal Sekali',
+                'resume' => 'resume/adinda123_gmail_com.pdf',
             ],
             [
                 'id_pengguna' => '5',
                 'tentang_saya' => 'Sangat Fenomenal Sekali',
+                'resume' => 'resume/adinda123_gmail_com.pdf',
             ],
             [
                 'id_pengguna' => '6',
                 'tentang_saya' => 'Sangat Fenomenal Sekali',
+                'resume' => 'resume/adinda123_gmail_com.pdf',
             ],
             [
                 'id_pengguna' => '7',
                 'tentang_saya' => 'Sangat Fenomenal Sekali',
+                'resume' => null,
             ],
             [
                 'id_pengguna' => '8',
                 'tentang_saya' => 'Sangat Fenomenal Sekali',
+                'resume' => null,
             ],
             [
                 'id_pengguna' => '9',
                 'tentang_saya' => 'Sangat Fenomenal Sekali',
+                'resume' => null,
             ],
             [
                 'id_pengguna' => '10',
                 'tentang_saya' => 'Sangat Fenomenal Sekali',
+                'resume' => null,
             ],
         ]);
     }
