@@ -71,6 +71,7 @@ class LowonganController extends Controller
             'posisi' => 'required',
             'kompetisi' => 'required',
             'deskripsi_kerja' => 'required',
+            'jurusan.*' => 'required',
             'prodi.*' => 'required',
             'angkatan.*' => 'required',
         ]);
@@ -83,6 +84,13 @@ class LowonganController extends Controller
             'deskripsi_kerja' => $request->deskripsi_kerja,
             'id_pengguna' => $pengguna->id_pengguna,
         ]);
+
+        foreach ($request->jurusan as $key => $jurusan) {
+            LowonganJurusan::create([
+                'id_lowongan' => $lowongan->id_lowongan,
+                'id_jurusan' => $jurusan,
+            ]);
+        }
 
         foreach ($request->prodi as $key => $prodi) {
             LowonganProdi::create([
