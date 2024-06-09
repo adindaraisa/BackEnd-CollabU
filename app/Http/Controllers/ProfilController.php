@@ -74,4 +74,5 @@ class ProfilController extends Controller
         if ($pendidikan->isNotEmpty() && $keahlian->isNotEmpty() && $prestasi->isNotEmpty() && $pengalaman->isNotEmpty() && !empty($resume) && !empty($tentang_saya)) {
             return response()->json(['message' => 'Profil Lengkap']);
         }
+    }
 }

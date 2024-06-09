@@ -63,6 +63,9 @@ Route::get('/pelamar', [PelamarController::class, 'getPelamar']);
 Route::get('/pelamar-lowongan/{id}', [PelamarController::class, 'getPelamarbyLowongan']);
 Route::get('/pelamar/lowongan/ditolak/{id}', [PelamarController::class, 'daftarPelamarDitolak']);
 Route::get('/pelamar/lowongan/diterima/{id}', [PelamarController::class, 'daftarPelamarDiterima']);
+Route::get('/lowongan/ditolak/{id}', [PelamarController::class, 'daftarLowonganDitolak']);
+Route::get('/lowongan/diproses/{id}', [PelamarController::class, 'daftarLowonganDiproses']);
+Route::get('/lowongan/diterima/{id}', [PelamarController::class, 'daftarLowonganDiterima']);
 
 Route::get('/jurusan', [JurusanController::class, 'getJurusan']);
 Route::get('/prodi', [ProdiController::class, 'getProdi']);

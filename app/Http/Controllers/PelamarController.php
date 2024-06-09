@@ -93,18 +93,106 @@ class PelamarController extends Controller
         return response()->json(['message' => 'Pelamar berhasil melamar']);
     }
 
-    public function daftarLowonganDitolak($id_pelamar)
+    public function daftarLowonganDitolak($id)
     {
-        //disini
+        $pengguna = Pengguna::find($id);
+
+        if (!$pengguna) {
+            return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
+        }
+
+        $pelamar = Pelamar::where('id_pengguna', $pengguna->id_pengguna)->where('status', 'ditolak')->get();
+
+        // Inisialisasi array untuk menyimpan id_lowongan
+        $idLowonganArray = [];
+
+        // Iterasi setiap pelamar untuk mengambil id_lowongan
+        foreach ($pelamar as $p) {
+            $idLowonganArray[] = $p->id_lowongan;
+        }
+
+        // Dapatkan data lowongan berdasarkan id_lowongan yang ada di idLowonganArray
+        $lowongan = Lowongan::whereIn('id_lowongan', $idLowonganArray)->get();
+
+        // Kembalikan data lowongan dalam response JSON
+        return response()->json($lowongan, 200);
     }
 
-    public function daftarLowonganDiterima($id_pelamar)
+    public function daftarLowonganDiterima($id)
     {
-        // disini
+        $pengguna = Pengguna::find($id);
+
+        if (!$pengguna) {
+            return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
+        }
+
+        $pelamar = Pelamar::where('id_pengguna', $pengguna->id_pengguna)->where('status', 'diterima')->get();
+
+        // Inisialisasi array untuk menyimpan id_lowongan
+        $idLowonganArray = [];
+
+        // Iterasi setiap pelamar untuk mengambil id_lowongan
+        foreach ($pelamar as $p) {
+            $idLowonganArray[] = $p->id_lowongan;
+        }
+
+        // Dapatkan data lowongan berdasarkan id_lowongan yang ada di idLowonganArray
+        $lowongan = Lowongan::whereIn('id_lowongan', $idLowonganArray)->get();
+
+        // Kembalikan data lowongan dalam response JSON
+        return response()->json($lowongan, 200);
     }
 
-    public function daftarLowonganDiproses($id_pelamar)
+    public function daftarLowonganDiproses($id)
     {
-        // disini
+        $pengguna = Pengguna::find($id);
+
+        if (!$pengguna) {
+            return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
+        }
+
+        $pelamar = Pelamar::where('id_pengguna', $pengguna->id_pengguna)->where('status', 'diproses')->get();
+
+        // Inisialisasi array untuk menyimpan id_lowongan
+        $idLowonganArray = [];
+
+        // Iterasi setiap pelamar untuk mengambil id_lowongan
+        foreach ($pelamar as $p) {
+            $idLowonganArray[] = $p->id_lowongan;
+        }
+
+        // Dapatkan data lowongan berdasarkan id_lowongan yang ada di idLowonganArray
+        $lowongan = Lowongan::whereIn('id_lowongan', $idLowonganArray)->get();
+
+        // Kembalikan data lowongan dalam response JSON
+        return response()->json($lowongan, 200);
+    }
+
+    public function daftarPelamarDitolak($id){
+        $lowongan = Lowongan::find($id);
+
+        if (!$lowongan) {
+            return response()->json(['message' => 'Lowongan tidak ditemukan'], 404);
+        }
+
+        $pelamar = Pelamar::with('pengguna')->where('id_lowongan', $lowongan->id_lowongan)
+        ->where('status', 'ditolak')
+        ->get();
+
+        return response()->json($pelamar, 200);
+    }
+
+    public function daftarPelamarDiterima($id){
+        $lowongan = Lowongan::find($id);
+
+        if (!$lowongan) {
+            return response()->json(['message' => 'Lowongan tidak ditemukan'], 404);
+        }
+
+        $pelamar = Pelamar::with('pengguna')->where('id_lowongan', $lowongan->id_lowongan)
+        ->where('status', 'diterima')
+        ->get();
+
+        return response()->json($pelamar, 200);
     }
 }
