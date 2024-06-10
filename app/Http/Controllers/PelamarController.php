@@ -64,8 +64,8 @@ class PelamarController extends Controller
         return response()->json(['message' => 'Status pelamar berhasil dirubah']);
     }
 
-    public function cekSudahDaftar($id_pengguna, $id_lowongan){
-
+    public function cekSudahDaftar($id_pengguna, $id_lowongan)
+    {
         $pengguna = Pengguna::find($id_pengguna);
 
         if (!$pengguna) {
@@ -73,6 +73,7 @@ class PelamarController extends Controller
         }
 
         $lowongan = Lowongan::find($id_lowongan);
+        $lowongan->load('pengguna.prodi', 'pengguna.jurusan', 'prodi.prodi', 'jurusan.jurusan', 'angkatan');
 
         if (!$lowongan) {
             return response()->json(['message' => 'Lowongan tidak ditemukan'], 404);
@@ -136,6 +137,7 @@ class PelamarController extends Controller
 
         // Dapatkan data lowongan berdasarkan id_lowongan yang ada di idLowonganArray
         $lowongan = Lowongan::whereIn('id_lowongan', $idLowonganArray)->get();
+        $lowongan->load('pengguna.prodi', 'pengguna.jurusan', 'prodi.prodi', 'jurusan.jurusan', 'angkatan');
 
         // Kembalikan data lowongan dalam response JSON
         return response()->json($lowongan, 200);
@@ -161,6 +163,7 @@ class PelamarController extends Controller
 
         // Dapatkan data lowongan berdasarkan id_lowongan yang ada di idLowonganArray
         $lowongan = Lowongan::whereIn('id_lowongan', $idLowonganArray)->get();
+        $lowongan->load('pengguna.prodi', 'pengguna.jurusan', 'prodi.prodi', 'jurusan.jurusan', 'angkatan');
 
         // Kembalikan data lowongan dalam response JSON
         return response()->json($lowongan, 200);
@@ -186,12 +189,14 @@ class PelamarController extends Controller
 
         // Dapatkan data lowongan berdasarkan id_lowongan yang ada di idLowonganArray
         $lowongan = Lowongan::whereIn('id_lowongan', $idLowonganArray)->get();
+        $lowongan->load('pengguna.prodi', 'pengguna.jurusan', 'prodi.prodi', 'jurusan.jurusan', 'angkatan');
 
         // Kembalikan data lowongan dalam response JSON
         return response()->json($lowongan, 200);
     }
 
-    public function daftarPelamarDitolak($id){
+    public function daftarPelamarDitolak($id)
+    {
         $lowongan = Lowongan::find($id);
 
         if (!$lowongan) {
@@ -199,13 +204,14 @@ class PelamarController extends Controller
         }
 
         $pelamar = Pelamar::with('pengguna')->where('id_lowongan', $lowongan->id_lowongan)
-        ->where('status', 'ditolak')
-        ->get();
+            ->where('status', 'ditolak')
+            ->get();
 
         return response()->json($pelamar, 200);
     }
 
-    public function daftarPelamarDiterima($id){
+    public function daftarPelamarDiterima($id)
+    {
         $lowongan = Lowongan::find($id);
 
         if (!$lowongan) {
@@ -213,8 +219,8 @@ class PelamarController extends Controller
         }
 
         $pelamar = Pelamar::with('pengguna')->where('id_lowongan', $lowongan->id_lowongan)
-        ->where('status', 'diterima')
-        ->get();
+            ->where('status', 'diterima')
+            ->get();
 
         return response()->json($pelamar, 200);
     }

@@ -80,7 +80,7 @@ class PenggunaController extends Controller
 
         $request->validate([
             'email' => 'required',
-            'nama_lengkap' => 'required|regex:/^[a-zA-Z\s\-]+$/',
+            'nama_lengkap' => 'required|regex:/^[a-zA-Z\s]+$/',
             'nama_panggilan' => 'required|regex:/^[a-zA-Z\s]+$/',
             'tanggal_lahir' => 'required',
             'jenis_kelamin' => 'required',
