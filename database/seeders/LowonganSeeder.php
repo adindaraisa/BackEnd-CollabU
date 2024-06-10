@@ -55,7 +55,7 @@ class LowonganSeeder extends Seeder
                 'created_at' => now()->subDays(5),
             ],
             [
-                'id_pengguna' => 1,
+                'id_pengguna' => 4,
                 'deskripsi' => 'Bergabunglah dengan tim pengembang perangkat lunak kami yang dinamis.',
                 'posisi' => 'Software Engineer',
                 'kompetisi' => 'Tech Fest 2024',
