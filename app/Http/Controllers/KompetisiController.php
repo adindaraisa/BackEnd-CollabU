@@ -53,7 +53,7 @@ class KompetisiController extends Controller
             return response()->json(['message' => 'Pengguna tidak ditemukan'], 404);
         }
 
-        $path = $kompetisi->poster;
+        $path = $kompetisi->poster; 
 
         // Periksa apakah file ada
         if (Storage::exists($path)) {
