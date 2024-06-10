@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('id_lowongan')->nullable();
             $table->foreign('id_jurusan')->references('id_jurusan')->on('jurusan')->onDelete('set null');
             $table->foreignId('id_jurusan')->nullable();
+            $table->timestamps();
         });
     }
 

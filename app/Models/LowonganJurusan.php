@@ -11,7 +11,6 @@ class LowonganJurusan extends Model
 {
     use HasFactory, HasApiTokens;
     protected $table = 'lowongan_jurusan';
-    public $timestamps = 'false';
     protected $fillable = [
         'id_lowongan', 
         'id_jurusan'
