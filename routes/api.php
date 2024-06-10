@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KeahlianController;
+use App\Http\Controllers\KompetisiController;
 use App\Http\Controllers\LowonganController;
 use App\Http\Controllers\PelamarController;
 use App\Http\Controllers\PendidikanController;
@@ -72,3 +73,6 @@ Route::get('/cek-pelamar/{id_pengguna}/{id_lowongan}', [PelamarController::class
 
 Route::get('/jurusan', [JurusanController::class, 'getJurusan']);
 Route::get('/prodi', [ProdiController::class, 'getProdi']);
+
+Route::get('/kompetisi', [KompetisiController::class, 'getInformasiKompetisi']);
+Route::get('/poster/{id}', [KompetisiController::class, 'getImage']);
