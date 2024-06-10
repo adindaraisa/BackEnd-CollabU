@@ -73,6 +73,7 @@ class PelamarController extends Controller
         }
 
         $lowongan = Lowongan::find($id_lowongan);
+        $lowongan->load('pengguna.prodi', 'pengguna.jurusan', 'prodi.prodi', 'jurusan.jurusan', 'angkatan');
 
         if (!$lowongan) {
             return response()->json(['message' => 'Lowongan tidak ditemukan'], 404);
