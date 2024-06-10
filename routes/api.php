@@ -69,10 +69,7 @@ Route::get('/pelamar/lowongan/diterima/{id}', [PelamarController::class, 'daftar
 Route::get('/lowongan/ditolak/{id}', [PelamarController::class, 'daftarLowonganDitolak']);
 Route::get('/lowongan/diproses/{id}', [PelamarController::class, 'daftarLowonganDiproses']);
 Route::get('/lowongan/diterima/{id}', [PelamarController::class, 'daftarLowonganDiterima']);
-Route::get('/cek-pelamar/{id_pengguna}/{id_lowongan}', [PelamarController::class, 'cekSudahDaftar']);
+Route::get('/cek-pelamar/{id_pengguna}&{id_lowongan}', [PelamarController::class, 'cekSudahDaftar']);
 
 Route::get('/jurusan', [JurusanController::class, 'getJurusan']);
 Route::get('/prodi', [ProdiController::class, 'getProdi']);
-
-Route::get('/kompetisi', [KompetisiController::class, 'getInformasiKompetisi']);
-Route::get('/poster/{id}', [KompetisiController::class, 'getImage']);
